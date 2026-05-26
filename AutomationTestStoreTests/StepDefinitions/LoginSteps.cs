@@ -1,6 +1,7 @@
 using AutomationTestStoreFramework.Pages;
 using AutomationTestStoreFramework.Utilities;
 using FluentAssertions;
+using NUnit.Framework;
 
 namespace AutomationTestStoreFramework.Features.Login;
 
@@ -50,4 +51,14 @@ public class LoginSteps
     {
         loginPage.IsLoginSuccessful().Should().BeTrue();
     }
+
+    [Then("User cant logged in with error message {string}")]
+    public void ThenUserCantLoggedInWithErrorMessage(string unSuccessfullMessage)
+    {
+        string actualMessage = loginPage.UnSuccessLoginMessage();
+        Console.WriteLine("actual message is: "+actualMessage);
+        //Assert.Equals(actualMessage, unSuccessfullMessage);
+        actualMessage.Should().Be(unSuccessfullMessage);
+    }
+
 }
