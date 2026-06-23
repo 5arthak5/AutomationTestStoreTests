@@ -47,4 +47,13 @@ public class LoginPage : BasePage
     {
         return IsElementDisplayed(MyAccountText);
     }
+
+    public string UnSuccessLoginMessage()
+    {
+        string message = Driver.FindElement(
+        By.CssSelector("div.alert-danger"))
+        .Text;
+
+        return message.Replace("×", "").Trim();
+    }
 }
